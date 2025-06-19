@@ -10,7 +10,8 @@ import h5py
 import torchvision
 
 # make sure this is a system variable in your bashrc
-NASA_ULI_ROOT_DIR=os.environ['NASA_ULI_ROOT_DIR']
+# NASA_ULI_ROOT_DIR=os.environ['NASA_ULI_ROOT_DIR']
+NASA_ULI_ROOT_DIR = '/home/speedracer1702/Projects/automata_lab/NASA_ULI_Xplane_Simulator/'
 
 import torchvision
 from torchvision import transforms
@@ -29,7 +30,6 @@ sys.path.append(UTILS_DIR)
 NNET_UTILS_DIR = NASA_ULI_ROOT_DIR + '/src/simulation/'
 sys.path.append(NNET_UTILS_DIR)
 from nnet import *
-
 from textfile_utils import *
 
 if __name__ == '__main__':
@@ -44,7 +44,8 @@ if __name__ == '__main__':
     filename = "../../models/TinyTaxiNet.nnet"
     network = NNet(filename)
 
-    condition_list = ['afternoon', 'morning', 'night', 'overcast']
+    # condition_list = ['afternoon', 'morning', 'night', 'overcast']
+    condition_list = ['morning']
 
     # 
     df_condition_list = []
@@ -67,8 +68,8 @@ if __name__ == '__main__':
 
             f = h5py.File(label_file, "r")
             # get the training data
-            x_train = f['X_train'].value
-            y_train = f['y_train'].value
+            x_train = f['X_train'][:] # previous .value was used instead of [:], .value is depracated
+            y_train = f['y_train'][:]
            
             print(' ')
             print('X_train shape: ', x_train.shape)
