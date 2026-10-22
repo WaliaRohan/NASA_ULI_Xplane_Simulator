@@ -37,8 +37,8 @@ def tiny_taxinet_prepare_dataloader(DATA_DIR, condition_list, train_test_split, 
 
         f = h5py.File(label_file, "r")
         # get the training data, plot a few random images
-        x_train = f['X_train'].value.astype(np.float32)
-        y_train = f['y_train'].value.astype(np.float32)[:, 0:num_y]
+        x_train = f['X_train'][:].astype(np.float32) # 16 x 8 x num_images
+        y_train = f['y_train'][:].astype(np.float32)[:, [0, 2]] # Y_train has shape 3 x num_images and contains cross-track error, heading, downtrack position
 
         if print_mode:
             print(' ')
@@ -94,7 +94,7 @@ if __name__ == '__main__':
     prefix = 'tiny_taxinet'
     train_test_split_list = ['train', 'validation', 'test']
 
-    condition_list = ['afternoon', 'morning', 'overcast', 'night']
+    condition_list = ['afternoon']#, 'morning', 'overcast', 'night']
 
     for train_test_split in train_test_split_list:
 
