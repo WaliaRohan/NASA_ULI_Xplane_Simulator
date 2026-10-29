@@ -18,13 +18,13 @@ from PIL import Image
 # make sure this is a system variable in your bashrc
 NASA_ULI_ROOT_DIR=os.environ['NASA_ULI_ROOT_DIR']
 
-DATA_DIR = NASA_ULI_ROOT_DIR + '/data/'
+DATA_DIR = NASA_ULI_ROOT_DIR + 'data'
 
 # where intermediate results are saved
 # never save this to the main git repo
-SCRATCH_DIR = NASA_ULI_ROOT_DIR + '/scratch/'
+SCRATCH_DIR = NASA_ULI_ROOT_DIR + 'scratch/'
 
-UTILS_DIR = NASA_ULI_ROOT_DIR + '/src/utils/'
+UTILS_DIR = NASA_ULI_ROOT_DIR + 'src/utils/'
 sys.path.append(UTILS_DIR)
 
 from textfile_utils import *

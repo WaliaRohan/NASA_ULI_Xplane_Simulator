@@ -83,7 +83,7 @@ if __name__=='__main__':
     model_dir = NASA_ULI_ROOT_DIR + '/pretrained_DNN/' 
     #'epoch_30_resnet18/'
 
-    condition_list = ['afternoon', 'morning', 'night', 'overcast']
+    condition_list = ['afternoon']#, 'morning', 'night', 'overcast']
 
     # larger images require a resnet, downsampled can have a small custom DNN
     dataset_type = 'large_images'
@@ -142,11 +142,11 @@ if __name__=='__main__':
             f.write(out_str + '\n')
 
             # COMPARE WITH A RANDOM, UNTRAINED DNN
-            untrained_model = TaxiNetDNN()
-            untrained_model = untrained_model.to(device)
+            # untrained_model = TaxiNetDNN()
+            # untrained_model = untrained_model.to(device)
 
-            test_results = test_model(untrained_model, test_dataset, test_loader, device, loss_func)
-            test_results['model_type'] = 'untrained'
+            # test_results = test_model(untrained_model, test_dataset, test_loader, device, loss_func)
+            # test_results['model_type'] = 'untrained'
 
-            out_str = '\t'.join([condition, train_test_val, dataset_type, test_results['model_type'], str(test_results['losses']), str(test_results['time_per_item']), str(test_results['time_per_item_std'])]) 
-            f.write(out_str + '\n')
+            # out_str = '\t'.join([condition, train_test_val, dataset_type, test_results['model_type'], str(test_results['losses']), str(test_results['time_per_item']), str(test_results['time_per_item_std'])]) 
+            # f.write(out_str + '\n')
